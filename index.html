@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BetterCountdown - Menu Bar Timer for Mac</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, sans-serif;
+        background-color: #ffffff;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .logo {
+        width: 128px;
+        height: 128px;
+        margin-bottom: 30px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #000;
+      }
+
+      .tagline {
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .hero-quote {
+        margin: 50px auto;
+        padding: 50px 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-quote::before {
+        content: '"';
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        font-size: 200px;
+        color: rgba(255, 255, 255, 0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+      }
+
+      .hero-quote-text {
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 500;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-quote-author {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: right;
+        font-weight: 600;
+        letter-spacing: 1px;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 40px;
+      }
+
+      .hero-explanation {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-top: 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-explanation img {
+        width: 200px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+
+      .hero-explanation-text {
+        font-size: 22px;
+        color: #ffffff;
+        font-weight: 600;
+        line-height: 1.6;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .download-button {
+        display: inline-block;
+        padding: 16px 48px;
+        background-color: #000;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .download-button:hover {
+        background-color: #333;
+      }
+
+      section {
+        margin-bottom: 80px;
+      }
+
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #000;
+      }
+
+      p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 16px;
+        padding-left: 30px;
+        position: relative;
+      }
+
+      li:before {
+        content: '•';
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+      }
+
+      .features {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        margin-top: 40px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        padding: 20px;
+      }
+
+       .feature-vertical {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 30px;
+         padding: 20px;
+       }
+
+       .feature-vertical .feature-text {
+         text-align: center;
+       }
+
+      .feature-text {
+        flex: 1;
+      }
+
+      .feature img {
+        width: 400px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+
+      .feature-vertical img {
+        width: 100%;
+        max-width: 600px;
+        align-self: center;
+      }
+
+      .feature h3 {
+        font-size: 32px;
+        margin-bottom: 16px;
+        color: #000;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .feature p {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .installation-steps {
+        background-color: #f8f8f8;
+        padding: 40px;
+        border-radius: 12px;
+        margin-top: 30px;
+      }
+
+      .installation-steps h3 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #000;
+      }
+
+      .installation-steps ol {
+        list-style: decimal;
+        padding-left: 20px;
+      }
+
+      .installation-steps li {
+        font-size: 17px;
+        color: #555;
+        margin-bottom: 14px;
+        padding-left: 10px;
+      }
+
+      .installation-steps li:before {
+        content: none;
+      }
+
+      .warning-box {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 20px 24px;
+        margin: 30px 0;
+        border-radius: 4px;
+      }
+
+      .warning-box p {
+        color: #856404;
+        margin-bottom: 10px;
+      }
+
+      .warning-box strong {
+        font-weight: 600;
+      }
+
+      .safe-box {
+        background-color: #e8f5e9;
+        border-left: 4px solid #4caf50;
+        padding: 20px 24px;
+        margin: 30px 0;
+        border-radius: 4px;
+      }
+
+      .safe-box p {
+        color: #2e7d32;
+        margin-bottom: 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: #999;
+        font-size: 14px;
+      }
+
+      code {
+        background-color: #f0f0f0;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+
+        h2 {
+          font-size: 28px;
+        }
+
+        .tagline {
+          font-size: 18px;
+        }
+
+        .hero-quote {
+          padding: 40px 25px;
+          margin: 30px auto;
+        }
+
+        .hero-quote::before {
+          font-size: 120px;
+          top: -10px;
+          left: 10px;
+        }
+
+        .hero-quote-text {
+          font-size: 22px;
+        }
+
+        .hero-quote-author {
+          font-size: 14px;
+        }
+
+        .hero-explanation {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .hero-explanation img {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .hero-explanation-text {
+          font-size: 18px;
+          text-align: center;
+        }
+
+        .feature,
+        .feature-vertical {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .feature img,
+        .feature-vertical img {
+          width: 100%;
+          max-width: 350px;
+        }
+
+        .feature h3 {
+          font-size: 26px;
+        }
+
+        .installation-steps {
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="./logo.png" alt="BetterCountdown Logo" class="logo" />
+        <h1>BetterCountdown</h1>
+        <p class="tagline">
+          A macOS menu bar timer that helps you stay focused and productive.
+        </p>
+
+        <div class="hero-quote">
+          <p class="hero-quote-text">
+            Work expands to fill the time available for its completion.
+          </p>
+          <p class="hero-quote-author">— PARKINSON'S LAW</p>
+
+          <div class="hero-explanation">
+            <img src="./raw.png" alt="Set Timer" />
+            <p class="hero-explanation-text">
+              Set time limits. Beat procrastination. Get more done by giving
+              yourself less time.
+            </p>
+          </div>
+        </div>
+
+        <a href="./BetterCountdown-1.0.dmg" class="download-button"
+          >Download for Mac</a
+        >
+      </header>
+
+      <section>
+        <div class="features">
+          <div class="feature-vertical">
+            <div class="feature-text">
+              <h3>Always show on your menubar to easy catching</h3>
+              <p>
+                BetterCountdown is a menu bar application for Mac, and you can
+                access it by clicking on the timer icon in your menu bar.
+              </p>
+            </div>
+            <img src="started.png" alt="Always on menubar" />
+          </div>
+          <div class="feature">
+            <div class="feature-text">
+              <h3>Easy tracking your performance</h3>
+              <p>
+                View your complete task history across all days with beautiful
+                pie charts showing how you spent your time.
+              </p>
+            </div>
+            <img src="analytics.png" alt="Track your performance" />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Installation Instructions</h2>
+        <p>Follow these simple steps to install BetterCountdown on your Mac:</p>
+
+        <div class="installation-steps">
+          <h3>Step 1: Download & Install</h3>
+          <ol>
+            <li>Download the <code>BetterCountdown.dmg</code> file</li>
+            <li>Double-click the downloaded DMG file to mount it</li>
+            <li>
+              Drag <strong>BetterCountdown.app</strong> to your Applications
+              folder
+            </li>
+            <li>Eject the DMG file</li>
+          </ol>
+        </div>
+
+        <div class="warning-box">
+          <p><strong>⚠️ IMPORTANT - First Launch Only:</strong></p>
+          <p>
+            Because this app is not notarized by Apple (which costs $99/year),
+            macOS will block it the first time.
+            <strong>This is normal!</strong> Here's how to open it:
+          </p>
+        </div>
+
+        <div class="installation-steps">
+          <h3>Step 2: Bypass Gatekeeper (First Time Only)</h3>
+
+          <ol>
+            <li>Try to open the app normally (you'll see a warning)</li>
+            <li>
+              Go to <strong>System Settings</strong> →
+              <strong>Privacy & Security</strong>
+            </li>
+            <li>
+              Scroll down and click <strong>"Open Anyway"</strong> next to
+              BetterCountdown
+            </li>
+            <li>Click <strong>"Open"</strong> to confirm</li>
+          </ol>
+        </div>
+
+        <div class="safe-box">
+          <p><strong>✅ This App is Safe!</strong></p>
+          <p>
+            Apple requires a $99/year developer account to "notarize" apps. This
+            free app hasn't been notarized, so macOS shows a precautionary
+            warning. The app is completely safe to use, and you'll only see this
+            warning once. After the first launch, it will open normally every
+            time!
+          </p>
+        </div>
+
+        <div class="installation-steps">
+          <h3>Step 3: Start Using</h3>
+          <p>
+            Once launched, BetterCountdown will appear in your menu bar at the
+            top of your screen showing "30:00". Click on it to start using your
+            countdown timer!
+          </p>
+        </div>
+      </section>
+
+      <section style="text-align: center">
+        <h2>Ready to Get Started?</h2>
+        <p>
+          Download BetterCountdown and start tracking your time effectively.
+        </p>
+        <a href="../BetterCountdown-1.0.dmg" class="download-button"
+          >Download for Mac</a
+        >
+        <p style="margin-top: 20px; font-size: 16px; color: #999">
+          Requires macOS 12.0 or later (Monterey, Ventura, Sonoma, or later)
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <p>Built for productive Mac users</p>
+      <p style="margin-top: 10px">Free to use and modify</p>
+    </footer>
+  </body>
+</html>

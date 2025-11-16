@@ -299,6 +299,49 @@
         font-size: 14px;
       }
 
+      .footer-feedback {
+        margin-bottom: 25px;
+      }
+
+      .footer-feedback h3 {
+        font-size: 18px;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .footer-feedback p {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .feedback-link {
+        display: inline-block;
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 24px;
+        border: 2px solid #667eea;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .feedback-link:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .footer-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, #e0e0e0 50%, transparent 100%);
+        margin: 30px auto;
+        max-width: 300px;
+      }
+
       code {
         background-color: #f0f0f0;
         padding: 2px 8px;
@@ -629,6 +672,14 @@
     </div>
 
     <footer>
+      <div class="footer-feedback">
+        <h3>Feedback & Bug Reports</h3>
+        <p>Have suggestions or found a bug? We'd love to hear from you!</p>
+        <a href="https://tally.so/r/aQQdQ2" target="_blank" rel="noopener noreferrer" class="feedback-link">
+          Submit Feedback
+        </a>
+      </div>
+      <div class="footer-divider"></div>
       <p>Built for productive Mac users</p>
       <p style="margin-top: 10px">Free to use and modify</p>
     </footer>

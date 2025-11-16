@@ -4,6 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BetterCountdown - Menu Bar Timer for Mac</title>
+    
+    <!-- Firebase Analytics SDK -->
+    <script type="module">
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+      import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js';
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyASBIxyuooEIz78Ov9IF5BAryHt12Gc0xs",
+        authDomain: "bettercountdown.firebaseapp.com",
+        projectId: "bettercountdown",
+        storageBucket: "bettercountdown.firebasestorage.app",
+        messagingSenderId: "92375233544",
+        appId: "1:92375233544:web:c33b07d9dc7d60a8c40dbd",
+        measurementId: "G-XGHRGP5L8P"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      // Make analytics available globally for event tracking
+      window.firebaseAnalytics = analytics;
+      window.logAnalyticsEvent = logEvent;
+
+      // Log page view
+      logEvent(analytics, 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    </script>
+    
     <style>
       * {
         margin: 0;
@@ -519,6 +550,7 @@
       target="_blank"
       rel="noopener noreferrer"
       class="buy-coffee-corner"
+      onclick="window.logAnalyticsEvent && window.logAnalyticsEvent(window.firebaseAnalytics, 'coffee_click', { location: 'floating_button', destination: 'buymeacoffee.com/tinyapps' })"
     >
       <span>☕</span>
       <span>Buy Me a Coffee</span>
@@ -546,7 +578,7 @@
           </div>
         </div>
 
-        <a href="./BetterCountdown-1.0.dmg" class="download-button"
+        <a href="./BetterCountdown-1.0.dmg" class="download-button" onclick="window.logAnalyticsEvent && window.logAnalyticsEvent(window.firebaseAnalytics, 'download_click', { location: 'header', button_text: 'Download for Mac' })"
           >Download for Mac</a
         >
       </header>
@@ -645,7 +677,7 @@
         <p>
           Download BetterCountdown and start tracking your time effectively.
         </p>
-        <a href="../BetterCountdown-1.0.dmg" class="download-button"
+        <a href="../BetterCountdown-1.0.dmg" class="download-button" onclick="window.logAnalyticsEvent && window.logAnalyticsEvent(window.firebaseAnalytics, 'download_click', { location: 'ready_section', button_text: 'Download for Mac' })"
           >Download for Mac</a
         >
         <p style="margin-top: 20px; font-size: 16px; color: #999">
@@ -664,6 +696,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="donate-button"
+          onclick="window.logAnalyticsEvent && window.logAnalyticsEvent(window.firebaseAnalytics, 'coffee_click', { location: 'support_section', destination: 'buymeacoffee.com/tinyapps' })"
         >
           <span>☕</span>
           <span>Buy Me a Coffee</span>
@@ -675,7 +708,7 @@
       <div class="footer-feedback">
         <h3>Feedback & Bug Reports</h3>
         <p>Have suggestions or found a bug? We'd love to hear from you!</p>
-        <a href="https://tally.so/r/aQQdQ2" target="_blank" rel="noopener noreferrer" class="feedback-link">
+        <a href="https://tally.so/r/aQQdQ2" target="_blank" rel="noopener noreferrer" class="feedback-link" onclick="window.logAnalyticsEvent && window.logAnalyticsEvent(window.firebaseAnalytics, 'feedback_click', { destination: 'tally.so/r/aQQdQ2' })">
           Submit Feedback
         </a>
       </div>
